@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Formulário interativo com validação JavaScript - Atividade Prática 3" />
+  <title>Formulário Interativo | Fametro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <main class="container" role="main">
+
+    <div class="card">
+
+      <header class="card__header">
+        <div class="badge" aria-hidden="true">✦ Fametro</div>
+        <h1 class="card__title">Cadastro</h1>
+        <p class="card__subtitle">Preencha os campos abaixo para continuar</p>
+      </header>
+
+      <form id="contactForm" class="form" novalidate aria-label="Formulário de cadastro">
+
+        <!-- Nome Completo -->
+        <div class="form__group" id="group-name">
+          <label class="form__label" for="fullName">
+            Nome completo
+            <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <div class="form__input-wrapper">
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              class="form__input"
+              placeholder="Ex: Maria Silva Santos"
+              autocomplete="name"
+              aria-required="true"
+              aria-describedby="fullName-error fullName-hint"
+            />
+            <span class="form__icon" aria-hidden="true">👤</span>
+          </div>
+          <span class="form__hint" id="fullName-hint">Mínimo de 3 caracteres, apenas letras e espaços.</span>
+          <span class="form__error" id="fullName-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- E-mail -->
+        <div class="form__group" id="group-email">
+          <label class="form__label" for="email">
+            E-mail
+            <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <div class="form__input-wrapper">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form__input"
+              placeholder="Ex: maria@email.com"
+              autocomplete="email"
+              aria-required="true"
+              aria-describedby="email-error email-hint"
+            />
+            <span class="form__icon" aria-hidden="true">✉️</span>
+          </div>
+          <span class="form__hint" id="email-hint">Digite um e-mail válido com @ e domínio.</span>
+          <span class="form__error" id="email-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- Telefone (campo extra / incremento) -->
+        <div class="form__group" id="group-phone">
+          <label class="form__label" for="phone">
+            Telefone
+            <span class="form__optional">(opcional)</span>
+          </label>
+          <div class="form__input-wrapper">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              class="form__input"
+              placeholder="Ex: (92) 99999-9999"
+              autocomplete="tel"
+              maxlength="15"
+              aria-describedby="phone-error phone-hint"
+            />
+            <span class="form__icon" aria-hidden="true">📱</span>
+          </div>
+          <span class="form__hint" id="phone-hint">Formato: (DDD) 99999-9999</span>
+          <span class="form__error" id="phone-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- Assunto (campo extra / incremento) -->
+        <div class="form__group" id="group-subject">
+          <label class="form__label" for="subject">
+            Assunto
+            <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <div class="form__input-wrapper form__input-wrapper--select">
+            <select
+              id="subject"
+              name="subject"
+              class="form__input form__select"
+              aria-required="true"
+              aria-describedby="subject-error"
+            >
+              <option value="">Selecione um assunto...</option>
+              <option value="informacoes">Informações gerais</option>
+              <option value="matricula">Matrícula</option>
+              <option value="financeiro">Financeiro</option>
+              <option value="suporte">Suporte técnico</option>
+              <option value="outro">Outro</option>
+            </select>
+            <span class="form__icon form__icon--select" aria-hidden="true">▾</span>
+          </div>
+          <span class="form__error" id="subject-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- Mensagem (campo extra / incremento) -->
+        <div class="form__group" id="group-message">
+          <label class="form__label" for="message">
+            Mensagem
+            <span class="form__required" aria-hidden="true">*</span>
+          </label>
+          <div class="form__input-wrapper">
+            <textarea
+              id="message"
+              name="message"
+              class="form__input form__textarea"
+              placeholder="Escreva sua mensagem aqui..."
+              rows="4"
+              maxlength="500"
+              aria-required="true"
+              aria-describedby="message-error message-counter"
+            ></textarea>
+          </div>
+          <div class="form__footer-row">
+            <span class="form__error" id="message-error" role="alert" aria-live="polite"></span>
+            <span class="form__counter" id="message-counter" aria-live="polite">0 / 500</span>
+          </div>
+        </div>
+
+        <!-- Termos (incremento acessibilidade) -->
+        <div class="form__group form__group--checkbox" id="group-terms">
+          <label class="form__checkbox-label">
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              class="form__checkbox"
+              aria-required="true"
+              aria-describedby="terms-error"
+            />
+            <span class="form__checkbox-custom" aria-hidden="true"></span>
+            Concordo com os <a href="#" class="form__link">termos de uso</a> e <a href="#" class="form__link">política de privacidade</a>
+          </label>
+          <span class="form__error" id="terms-error" role="alert" aria-live="polite"></span>
+        </div>
+
+        <!-- Botão de envio -->
+        <button type="submit" class="btn-submit" id="submitBtn" aria-label="Enviar formulário">
+          <span class="btn-submit__text">Enviar mensagem</span>
+          <span class="btn-submit__icon" aria-hidden="true">→</span>
+        </button>
+
+      </form>
+
+      <!-- Feedback de sucesso -->
+      <div class="success-card" id="successCard" aria-live="assertive" aria-hidden="true" hidden>
+        <div class="success-card__icon" aria-hidden="true">✓</div>
+        <h2 class="success-card__title">Mensagem enviada!</h2>
+        <p class="success-card__text">Obrigado, <strong id="successName"></strong>! Entraremos em contato em breve pelo e-mail <strong id="successEmail"></strong>.</p>
+        <button class="btn-reset" id="resetBtn" aria-label="Preencher novo formulário">Novo cadastro</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
